@@ -1,11 +1,11 @@
-package com.javaDemo.crm.dto;
+package com.javaDemo.crm.paramDto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "CompanyDto", description = "公司基礎資訊")
-public class CompanyDto {
-
+@ApiModel(value = "ParamUpdateCompanyDto", description = "更新公司資訊")
+public class ParamUpdateCompanyDto {
+	
 	@ApiModelProperty(value = "公司ID", required = true)
 	private long id;
 
@@ -15,6 +15,7 @@ public class CompanyDto {
 	@ApiModelProperty(value = "公司地址", required = false)
 	private String address;
 
+	
 	public long getId() {
 		return id;
 	}
@@ -38,14 +39,6 @@ public class CompanyDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	public CompanyDto(long id, String name, String address) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.address = address;
-	}
-
-	 
-
+	
+	
 }

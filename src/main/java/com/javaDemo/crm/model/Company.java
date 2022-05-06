@@ -33,7 +33,7 @@ public class Company {
 	private String address;
 
 	@Column(name = "CREATED_BY", nullable = false, insertable = true, updatable = false)
-	private long createdBy;
+	private String createdBy;
 
 	@Column(name = "CREATED_AT", nullable = false, insertable = true, updatable = false)
 	@CreatedDate
@@ -41,7 +41,7 @@ public class Company {
 	private Date createdAt;
 
 	@Column(name = "UPDATE_BY", nullable = false, insertable = true, updatable = true)
-	private long updatedBy;
+	private String updatedBy;
 
 	@Column(name = "UPDATE_AT", nullable = false, insertable = true, updatable = true)
 	@LastModifiedDate
@@ -84,11 +84,11 @@ public class Company {
 		this.address = address;
 	}
 
-	public long getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(long createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -100,11 +100,11 @@ public class Company {
 		this.createdAt = createdAt;
 	}
 
-	public long getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(long updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -114,6 +114,15 @@ public class Company {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Company(long id, String name, String address, String createdBy, String updatedBy) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.createdBy = createdBy;
+		this.updatedBy = updatedBy;
 	}
 
 }

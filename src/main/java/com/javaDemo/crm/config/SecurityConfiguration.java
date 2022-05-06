@@ -48,8 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 http
          .authorizeRequests()
          .antMatchers("/**/update/**", "/**/delete/**").hasAnyAuthority("MANAGER", "SUPER_USER")
-         .antMatchers("/**/insert/**").hasAnyAuthority("OPERATOR", "SUPER_USER")
+         .antMatchers("/**/add/**").hasAnyAuthority("OPERATOR", "SUPER_USER")
          .antMatchers("/**/get/**").hasAnyAuthority("OPERATOR", "MANAGER", "SUPER_USER")
+         .antMatchers("/**/getAll/**").hasAnyAuthority("OPERATOR", "MANAGER", "SUPER_USER")
          .anyRequest()
          .authenticated()
          .and().formLogin().permitAll()
