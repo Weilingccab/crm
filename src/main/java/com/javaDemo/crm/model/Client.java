@@ -5,12 +5,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -22,6 +25,11 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 @Table(name = "CLIENT")
+@NamedEntityGraph(
+		  name = "client.company",
+		  attributeNodes = {
+		    @NamedAttributeNode("company")		  }
+		)
 public class Client {
 
 	@Column(name = "ID", nullable = false)
@@ -29,7 +37,9 @@ public class Client {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToOne(targetEntity = Company.class)
+
+
+	@ManyToOne(targetEntity = Company.class,fetch = FetchType.LAZY)
 	@JoinColumns(value = { @JoinColumn(name = "COMPANY_ID", referencedColumnName = "ID", nullable = false) })
 	private Company company;
 
@@ -43,7 +53,7 @@ public class Client {
 	private String phone;
 
 	@Column(name = "CREATED_BY", nullable = false, insertable = true, updatable = false)
-	private long createdBy;
+	private String createdBy;
 
 	@Column(name = "CREATED_AT", nullable = false, insertable = true, updatable = false)
 	@CreatedDate
@@ -51,7 +61,7 @@ public class Client {
 	private Date createdAt;
 
 	@Column(name = "UPDATE_BY", nullable = false, insertable = true, updatable = true)
-	private long updatedBy;
+	private String updatedBy;
 
 	@Column(name = "UPDATE_AT", nullable = false, insertable = true, updatable = true)
 	@LastModifiedDate
@@ -110,11 +120,11 @@ public class Client {
 		this.phone = phone;
 	}
 
-	public long getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(long createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -126,11 +136,11 @@ public class Client {
 		this.createdAt = createdAt;
 	}
 
-	public long getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(long updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -142,4 +152,20 @@ public class Client {
 		this.updatedAt = updatedAt;
 	}
 
+	public Client(long id, Company company, String name, String email, String phone, String createdBy, String updatedBy) {
+		super();
+		this.id = id;
+		this.company = company;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.createdBy = createdBy;
+		this.updatedBy = updatedBy;
+	}
+
+	public Client() {
+		super();
+	}
+
+	
 }

@@ -117,8 +117,12 @@ public class Company {
 	}
 
 	
-	  public Company(){}
 
+
+	public Company() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Company(long id, String name, String address, String createdBy, String updatedBy) {
 		super();
