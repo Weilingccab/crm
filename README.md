@@ -20,13 +20,9 @@ Using :
   
 連線測試：
 ---
-測試使用者：密碼為admin
-INSERT INTO user (username, password, roles) VALUES ('op2', '$2a$10$VrTzv.mHcJMwq/gg1421EOtDAT3kp1IEnsquxYR5k33d489MJJScC', 'OPERATOR'); 
-INSERT INTO user (username, password, roles) VALUES ('mg2', '$2a$10$VrTzv.mHcJMwq/gg1421EOtDAT3kp1IEnsquxYR5k33d489MJJScC', 'MANAGER'); 
-INSERT INTO user (username, password, roles) VALUES ('su2', '$2a$10$VrTzv.mHcJMwq/gg1421EOtDAT3kp1IEnsquxYR5k33d489MJJScC', 'SUPER_USER'); 
+    測試使用者：密碼為admin
 
-ER Model:
----
-  
-  ![image](https://user-images.githubusercontent.com/99722169/163770785-2a98defd-091d-45af-90dc-a8fffbd39e24.png)
+    INSERT INTO user (username, password, roles) VALUES ('op2', '$2a$10$VrTzv.mHcJMwq/gg1421EOtDAT3kp1IEnsquxYR5k33d489MJJScC', 'OPERATOR'); 
+    INSERT INTO user (username, password, roles) VALUES ('mg2', '$2a$10$VrTzv.mHcJMwq/gg1421EOtDAT3kp1IEnsquxYR5k33d489MJJScC', 'MANAGER'); 
+    INSERT INTO user (username, password, roles) VALUES ('su2', '$2a$10$VrTzv.mHcJMwq/gg1421EOtDAT3kp1IEnsquxYR5k33d489MJJScC', 'SUPER_USER'); 
 
