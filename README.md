@@ -9,6 +9,7 @@ Using :
     Junit 5
     Maven
     API document: Springfox 
+    Builder Design Pattern
 需求：
 ---  
     1.根據權限可以存取不同的API. 
