@@ -27,6 +27,11 @@ public class ParamAddCompanyDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+	public ParamAddCompanyDto(String name, String address) {
+		super();
+		this.name = name;
+		this.address = address;
+	}	
 	
 }

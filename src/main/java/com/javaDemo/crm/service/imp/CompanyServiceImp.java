@@ -13,6 +13,7 @@ import com.javaDemo.crm.dto.CompanyDto;
 import com.javaDemo.crm.dto.GeneralResult;
 import com.javaDemo.crm.model.Company;
 import com.javaDemo.crm.paramDto.ParamAddCompanyDto;
+import com.javaDemo.crm.paramDto.ParamUpdateCompanyDto;
 import com.javaDemo.crm.service.CompanyService;
 
 @Service
@@ -22,7 +23,7 @@ public class CompanyServiceImp implements CompanyService {
 	private CompanyDao companyDao;
 
 	@Autowired
-	private UserDetailsServiceImpl userDetailsServiceImpl;
+	private UserDetailsServiceImp userDetailsServiceImp;
 
 	@Override
 	public List<CompanyDto> getCompanyList() {
@@ -38,18 +39,42 @@ public class CompanyServiceImp implements CompanyService {
 
 	@Override
 	@Transactional
-	public GeneralResult addCompany(ParamAddCompanyDto paramAddCompanyDto) {
-		String username = userDetailsServiceImpl.getCurrentUsername();
+	public CompanyDto addCompany(ParamAddCompanyDto paramAddCompanyDto) {
+		String username = userDetailsServiceImp.getCurrentUsername();
 		Company c = new CompanyBuilderFactory().setName(paramAddCompanyDto.getName())
 				.setAddress(paramAddCompanyDto.getAddress()).setCreateby(username).setUpdateby(username).create();
-		try {
-			companyDao.save(c);
-			GeneralResult g = new GeneralResult(true,null);
-			return g;
-		} catch (Exception e) {
-			GeneralResult g = new GeneralResult(false, e.toString());
-			return g;
-		}
+		Company dbCompany = companyDao.save(c);
+		CompanyDto cdto = new CompanyDto(dbCompany.getId(), dbCompany.getName(), dbCompany.getAddress());
+		return cdto;
+
+	}
+
+	@Override
+	public CompanyDto getCompany(long id) {
+		Company dbCompany = companyDao.findById(id);
+		CompanyDto cdto = new CompanyDto(dbCompany.getId(), dbCompany.getName(), dbCompany.getAddress());
+		return cdto;
+	}
+
+	@Override
+	@Transactional
+	public CompanyDto updateCompany(ParamUpdateCompanyDto paramUpdateCompanyDto) {
+		String username = userDetailsServiceImp.getCurrentUsername();
+		Company dbCompany = companyDao.findById(paramUpdateCompanyDto.getId());
+		dbCompany.setName(paramUpdateCompanyDto.getName());
+		dbCompany.setAddress(paramUpdateCompanyDto.getAddress());
+		dbCompany.setUpdatedBy(username);
+		Company dbFinCompany = companyDao.save(dbCompany);
+		CompanyDto cdto = new CompanyDto(dbFinCompany.getId(), dbFinCompany.getName(), dbFinCompany.getAddress());
+		return cdto;
+	}
+
+	@Override
+	@Transactional
+	public GeneralResult deleteCompany(long id) {
+		companyDao.deleteById(id);
+		GeneralResult gr = new GeneralResult(true, null);
+		return gr;
 	}
 
 }

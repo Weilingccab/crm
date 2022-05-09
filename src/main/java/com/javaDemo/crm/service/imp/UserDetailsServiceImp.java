@@ -12,7 +12,7 @@ import com.javaDemo.crm.model.MyUserDetails;
 import com.javaDemo.crm.model.User;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImp implements UserDetailsService {
 
 	@Autowired
 	private UserDao userDao;

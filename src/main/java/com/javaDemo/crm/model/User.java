@@ -20,6 +20,20 @@ public class User {
 	@Column(name = "ROLES", length = 255, nullable = false)
 	private  String roles;
 
+	 
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(String username, String password, String roles) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+	}
+
 	public String getUsername() {
 		return username;
 	}

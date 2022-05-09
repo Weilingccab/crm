@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.javaDemo.crm.service.imp.UserDetailsServiceImpl;
+import com.javaDemo.crm.service.imp.UserDetailsServiceImp;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl();
+        return new UserDetailsServiceImp();
     }
     
     @Bean
@@ -54,6 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
          .anyRequest()
          .authenticated()
          .and().formLogin().permitAll()
+         .and().httpBasic()
          .and().logout().permitAll()
          .and().csrf().disable();
 	}

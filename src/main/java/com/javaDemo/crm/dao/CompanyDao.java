@@ -6,4 +6,6 @@ import com.javaDemo.crm.model.Company;
 
 public interface CompanyDao extends JpaRepository<Company, Long> {
 
+	Company findById(long id);
+
 }

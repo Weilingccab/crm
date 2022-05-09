@@ -116,6 +116,10 @@ public class Company {
 		this.updatedAt = updatedAt;
 	}
 
+	
+	  public Company(){}
+
+
 	public Company(long id, String name, String address, String createdBy, String updatedBy) {
 		super();
 		this.id = id;
